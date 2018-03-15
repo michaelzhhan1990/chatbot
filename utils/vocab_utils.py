@@ -38,9 +38,16 @@ def load_vocab(vocab_file):
   vocab = []
   with codecs.getreader("utf-8")(tf.gfile.GFile(vocab_file, "rb")) as f:
     vocab_size = 0
-    for word in f:
-      vocab_size += 1
-      vocab.append(word.strip())
+
+    try:
+      for word in f:
+        vocab_size += 1
+        vocab.append(word.strip())
+
+    except UnicodeDecodeError :
+        print('something wrong')
+        print(vocab_size)
+
   return vocab, vocab_size
 
 

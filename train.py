@@ -322,7 +322,7 @@ def train(hparams, scope=None, target_session=""):
       target=target_session, config=config_proto, graph=eval_model.graph)
   infer_sess = tf.Session(
       target=target_session, config=config_proto, graph=infer_model.graph)
-
+  # something wrong here, unk value got messed
   with train_model.graph.as_default():
     loaded_train_model, global_step = model_helper.create_or_load_model(
         train_model.model, model_dir, train_sess, "train")
