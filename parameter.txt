@@ -1,0 +1,24 @@
+python -m chatbot.nmt \
+    --src=enc --tgt=dec \
+    --vocab_prefix=tmp/chatbot_data/vocab  \
+    --train_prefix=tmp/chatbot_data/train \
+    --dev_prefix=tmp/chatbot_data/test  \
+    --test_prefix=tmp/chatbot_data/test \
+    --out_dir=tmp/chatbot_model \
+    --num_train_steps=12000 \
+    --steps_per_stats=100 \
+    --num_layers=2 \
+    --num_units=128 \
+    --dropout=0.2 \
+    --metrics=bleu
+
+    --src=vi --tgt=en \     --vocab_prefix=tmp/nmt_data/vocab  \     --train_prefix=tmp/nmt_data/train \     --dev_prefix=tmp/nmt_data/tst2012  \     --test_prefix=tmp/nmt_data/tst2013 \     --out_dir=tmp/nmt_model \     --num_train_steps=12000 \     --steps_per_stats=100 \     --num_layers=2 \     --num_units=128 \     --dropout=0.2 \     --metrics=bleu
+
+    python -m nmt.nmt \
+    --src=enc --tgt=dec \
+    --hparams_path=standard_hparams/wmt16_gnmt_4_layer.json \
+    --vocab_prefix=tmp/chatbot_data/vocab  \
+    --train_prefix=tmp/chatbot_data/train \
+    --dev_prefix=tmp/chatbot_data/test  \
+    --test_prefix=tmp/chatbot_data/test \
+    --out_dir=tmp/chatbot_model_attention \
